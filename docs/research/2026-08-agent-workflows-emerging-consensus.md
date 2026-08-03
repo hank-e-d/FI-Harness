@@ -4,6 +4,7 @@
 - **Focus:** What high-signal builders actually do — demos, measurements, architecture, candid failures  
 - **Related in this repo:**  
   - [Agent harness golden rules](2026-08-agent-harness-golden-rules.md) (harness/MCP/loop engineering)  
+  - [Specs agents can build from](2026-08-specs-agents-can-build-from.md) (GDD/task packets/precision)  
   - [docs/golden-rules-ai-gamedev.md](../golden-rules-ai-gamedev.md) (broader gamedev field notes)  
 - **Sources:** Inline citations at end of this file  
 
