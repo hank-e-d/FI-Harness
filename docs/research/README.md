@@ -18,5 +18,6 @@ This folder holds dated digests focused on **agent infrastructure** and field re
 | 2026-08 | [Sources (pass A)](2026-08-sources.md) | same | Harness-focused Reddit + X + papers |
 | 2026-08 | [Sources (pass B)](2026-08-sources-pass-b.md) | same | Four-topic pass sources |
 | 2026-08 | [Golden rules: independent crosscheck](2026-08-golden-rules-independent-crosscheck.md) | Jun–early Aug 2026 | Sibling agent crosscheck (note method caveats in file) |
+| 2026-08 | [Golden rules: verified-HN-sources pass](2026-08-golden-rules-verified-hn-sources.md) | Jun–early Aug 2026 | Claude Code pass run from Eric's own 4 prompts (harness/loops/eval, specs, assets, ship); several directly-fetched HN threads w/ verified point counts + direct devlogs/GitHub repos, stronger sourcing than the earlier crosscheck in this folder |
 
 Add a row here when you add a new research note. Prefer append/new files over rewriting others' digests.
