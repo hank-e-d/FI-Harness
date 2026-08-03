@@ -4,6 +4,7 @@
 - **Focus:** robust harnesses/scaffolding, MCP + skills tooling, agentic loops, success criteria/eval, long-running failure modes  
 - **Communities:** r/aigamedev, r/LocalLLaMA (primary architecture debate), X practitioners  
 - **Sources:** [2026-08-sources.md](2026-08-sources.md)  
+- **Related in this repo:** [docs/golden-rules-ai-gamedev.md](../golden-rules-ai-gamedev.md) (broader game-dev field notes — specs, assets, ship). This digest is the **agent-runtime / harness engineering** slice.  
 - **Confidence overall:** High on harness/context principles; Medium on exact product rankings (churn is fast)
 
 ---

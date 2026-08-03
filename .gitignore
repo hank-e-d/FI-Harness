@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Engine / build
+.godot/
+.import/
+export/
+*.translation
+node_modules/
+dist/
+build/
+*.log
+
+# Secrets
+.env
+.env.*
+secrets.env
+*.pem
