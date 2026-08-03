@@ -41,6 +41,7 @@ A **harness** is the playable machine an agent is allowed to decorate — not a 
 | [docs/research/2026-08-research-pass-four-topics.md](docs/research/2026-08-research-pass-four-topics.md) | **Research campaign report** — harness + specs + assets + ship (Jun–Aug 2026) |
 | [docs/research/2026-08-visual-audio-asset-pipelines.md](docs/research/2026-08-visual-audio-asset-pipelines.md) | Field notes: **visual & audio assets** — LoRA/style lock, contracts, in-game QA |
 | [docs/research/2026-08-hosting-publishing-marketing.md](docs/research/2026-08-hosting-publishing-marketing.md) | Field notes: **hosting / publish / market** — itch vs Steam, trailers, disclosure |
+| [docs/research/2026-08-shipping-ai-assisted-games.md](docs/research/2026-08-shipping-ai-assisted-games.md) | Field notes: **shipping AI games** — release ladder, demos, creators, funnels, postmortem numbers |
 | [docs/research/2026-08-sources.md](docs/research/2026-08-sources.md) | Primary Reddit + X + paper sources for harness research |
 
 ## Packs (planned)

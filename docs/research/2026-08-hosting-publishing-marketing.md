@@ -3,7 +3,9 @@
 - **Window:** June – early August 2026  
 - **Focus:** Platforms, technical hosting, store strategy, community, what recent releasers actually did  
 - **Sources:** r/aigamedev, r/IndieDev, X builders  
-- **Related:** [Four-topic research pass](2026-08-research-pass-four-topics.md)
+- **Related:**  
+  - [Four-topic research pass](2026-08-research-pass-four-topics.md)  
+  - [Shipping AI-assisted games](2026-08-shipping-ai-assisted-games.md) (deeper postmortems: release ladder, creators, funnels, demos)
 
 ---
 

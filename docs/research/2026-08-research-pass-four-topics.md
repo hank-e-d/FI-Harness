@@ -12,7 +12,7 @@ This note is the **campaign report** for four research prompts. Deep dives live 
 | Harnesses, loops, eval, long-run failures | [Harness golden rules](2026-08-agent-harness-golden-rules.md) · [Workflows consensus](2026-08-agent-workflows-emerging-consensus.md) · **§1 below (fresh findings)** |
 | Specs / GDD / context engineering | [Specs agents can build from](2026-08-specs-agents-can-build-from.md) · **§2 below** |
 | Visual & audio assets | **[Assets digests](2026-08-visual-audio-asset-pipelines.md)** (new) |
-| Hosting, publishing, marketing | **[Ship & market digests](2026-08-hosting-publishing-marketing.md)** (new) |
+| Hosting, publishing, marketing | **[Ship & market](2026-08-hosting-publishing-marketing.md)** · **[Shipping postmortems](2026-08-shipping-ai-assisted-games.md)** |
 
 **Meta-thesis across all four topics:**
 
