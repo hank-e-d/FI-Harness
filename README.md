@@ -38,6 +38,9 @@ A **harness** is the playable machine an agent is allowed to decorate — not a 
 | [docs/research/2026-08-agent-harness-golden-rules.md](docs/research/2026-08-agent-harness-golden-rules.md) | Field notes: **agent harness / MCP / skills / agentic loops / eval / long-run failures** |
 | [docs/research/2026-08-agent-workflows-emerging-consensus.md](docs/research/2026-08-agent-workflows-emerging-consensus.md) | Field notes: **emerging consensus** — systems-first, repo-as-memory, maker≠checker, bound autonomy |
 | [docs/research/2026-08-specs-agents-can-build-from.md](docs/research/2026-08-specs-agents-can-build-from.md) | Field notes: **specs agents can build from** — vertical slice, GDD hierarchy, precision, non-goals |
+| [docs/research/2026-08-research-pass-four-topics.md](docs/research/2026-08-research-pass-four-topics.md) | **Research campaign report** — harness + specs + assets + ship (Jun–Aug 2026) |
+| [docs/research/2026-08-visual-audio-asset-pipelines.md](docs/research/2026-08-visual-audio-asset-pipelines.md) | Field notes: **visual & audio assets** — LoRA/style lock, contracts, in-game QA |
+| [docs/research/2026-08-hosting-publishing-marketing.md](docs/research/2026-08-hosting-publishing-marketing.md) | Field notes: **hosting / publish / market** — itch vs Steam, trailers, disclosure |
 | [docs/research/2026-08-sources.md](docs/research/2026-08-sources.md) | Primary Reddit + X + paper sources for harness research |
 
 ## Packs (planned)
