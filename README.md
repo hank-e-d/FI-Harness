@@ -89,4 +89,11 @@ Multiple agents write here. Keep the tree tidy (see also [AGENTS.md](AGENTS.md))
 
 ## Status
 
-Planning notes and field research captured 2026-08-03. Kernel and packs not yet implemented in this repo.
+**Research intake in progress.** Multi-vendor agents land dated digests under `docs/research/`.
+
+- Core design spine (`docs/0N-*.md`) and early planning notes are in place
+- Kernel and packs are **not** implemented yet
+- **No synthesis / skill extract / product wire until research intake is called done**
+- Nexus and other cockpits are **out of scope for now**
+
+Session parking notes (not canon): [notes/2026-08-03-session-fi-harness-direction.md](notes/2026-08-03-session-fi-harness-direction.md)

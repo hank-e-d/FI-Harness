@@ -1,5 +1,11 @@
 # Agent conventions (FI-Harness)
 
+## Current phase (2026-08)
+
+**Research intake.** Land dated digests only. Do **not** start synthesis, claim registers, skill extraction, kernel/pack implementation, or Nexus integration until the owner freezes intake.
+
+Parking context: `notes/2026-08-03-session-fi-harness-direction.md` (not canon).
+
 ## Before you write
 
 1. Read `README.md` for thesis and folder map.
