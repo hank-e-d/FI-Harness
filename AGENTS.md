@@ -1,10 +1,18 @@
 # Agent conventions (FI-Harness)
 
-## Current phase (2026-08)
+## Current phase (2026-08-03)
 
-**Research intake.** Land dated digests only. Do **not** start synthesis, claim registers, skill extraction, kernel/pack implementation, or Nexus integration until the owner freezes intake.
+**Intake CLOSED by the owner. Synthesis landed; awaiting alignment.**
 
-Parking context: `notes/2026-08-03-session-fi-harness-direction.md` (not canon).
+Read `docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md` before proposing anything. It supersedes the
+standing "do not synthesize" instruction below, and it contains findings that contradict the
+`docs/0N-*.md` spine — notably that the gate-centric reading was tested and **refuted**, and that the
+research corpus is only 9-of-84 verified-primary.
+
+Still in force: do **not** start kernel/pack implementation or Nexus integration. The design is a
+proposal for owner alignment, not an approved build.
+
+Parking context: `notes/2026-08-03-session-fi-harness-direction.md` (not canon, now historical).
 
 ## Before you write
 

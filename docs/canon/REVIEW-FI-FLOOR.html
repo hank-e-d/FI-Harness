@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FI Floor — alignment review · 2026-08-03</title>
+<style>
+:root{
+  color-scheme: dark; accent-color:#5eead4;
+  --bg-deep:#070b14; --bg-raised:#0c1424; --bg-inset:#0a1120;
+  --border:#1c2c47; --border-bright:#2b4a75;
+  --ink-hi:#eaf3ff; --ink:#c3d2e6; --ink-mute:#7e91ab; --ink-faint:#74869e;
+  --ink-ok:#b8e6c9; --ink-err:#f6c1dc;
+  --cyan:#5eead4; --violet:#818cf8; --amber:#fbbf24; --rose:#f472b6; --green:#4ade80;
+  --grad:linear-gradient(92deg,var(--cyan),var(--violet));
+  --glow-cyan:0 0 1px rgba(255,255,255,.6),0 0 6px rgba(94,234,212,.8),0 0 18px rgba(94,234,212,.45),0 0 48px rgba(94,234,212,.18);
+  --halo:0 0 2px rgba(255,255,255,.55),0 0 8px rgba(94,234,212,.75),0 0 24px rgba(94,234,212,.4);
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg-deep);color:var(--ink);
+  font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+  background-image:radial-gradient(1200px 600px at 15% -10%,rgba(129,140,248,.10),transparent 60%),
+                   radial-gradient(900px 500px at 90% 0%,rgba(94,234,212,.07),transparent 55%);
+  background-attachment:fixed;}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px 140px}
+a{color:var(--cyan)}
+code,.mono{font-family:var(--mono);font-size:.88em}
+code{background:var(--bg-inset);border:1px solid var(--border);border-radius:4px;padding:.1em .38em;color:var(--ink-hi)}
+
+header{padding:64px 0 34px;border-bottom:1px solid var(--border);margin-bottom:44px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--halo);margin:0 0 16px}
+h1{font-size:clamp(2.1rem,5vw,3.1rem);line-height:1.06;margin:0 0 14px;color:var(--ink-hi);letter-spacing:-.02em;font-weight:680}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:1.12rem;color:var(--ink-mute);max-width:66ch;margin:0}
+.meta{margin-top:24px;font-family:var(--mono);font-size:.76rem;color:var(--ink-faint);display:flex;gap:20px;flex-wrap:wrap}
+
+h2{font-size:1.5rem;color:var(--ink-hi);margin:64px 0 6px;letter-spacing:-.01em;font-weight:660}
+h2 .num{font-family:var(--mono);font-size:.72rem;color:var(--cyan);display:block;letter-spacing:.16em;margin-bottom:9px;text-transform:uppercase}
+h3{font-size:1.06rem;color:var(--ink-hi);margin:32px 0 8px;font-weight:640}
+p{margin:0 0 15px}
+.lede{font-size:1.05rem;color:var(--ink-mute);margin-bottom:26px;max-width:70ch}
+strong{color:var(--ink-hi);font-weight:620}
+
+.card{background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:24px 26px;margin:20px 0}
+.card.hot{border-color:rgba(244,114,182,.42);background:linear-gradient(var(--bg-raised),var(--bg-raised)) padding-box,linear-gradient(180deg,rgba(244,114,182,.5),rgba(244,114,182,.1)) border-box;border:1px solid transparent}
+.card.key{border-color:rgba(94,234,212,.4);box-shadow:0 0 0 1px rgba(94,234,212,.08),0 18px 50px -28px rgba(94,234,212,.4)}
+
+.pull{border-left:3px solid var(--cyan);padding:6px 0 6px 20px;margin:22px 0;color:var(--ink-hi);font-size:1.04rem}
+.pull .who{display:block;font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);margin-top:9px;text-transform:none;letter-spacing:0}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+tbody tr:hover{background:rgba(94,234,212,.03)}
+.tw{overflow-x:auto}
+
+.tag{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;padding:.2em .6em;border-radius:4px;border:1px solid;white-space:nowrap}
+.t-ok{color:var(--green);border-color:rgba(74,222,128,.45);background:rgba(74,222,128,.09)}
+.t-no{color:var(--rose);border-color:rgba(244,114,182,.45);background:rgba(244,114,182,.09)}
+.t-warn{color:var(--amber);border-color:rgba(251,191,36,.45);background:rgba(251,191,36,.09)}
+.t-info{color:var(--violet);border-color:rgba(129,140,248,.45);background:rgba(129,140,248,.09)}
+
+.dec{background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin:22px 0}
+.dec h3{margin-top:0;display:flex;gap:10px;align-items:baseline}
+.dec h3 .qid{font-family:var(--mono);font-size:.74rem;color:var(--cyan);flex:none}
+.opts{margin:16px 0 6px;display:grid;gap:9px}
+.opt{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .14s,background .14s}
+.opt:hover{border-color:var(--border-bright);background:var(--bg-inset)}
+.opt input{margin:4px 0 0;flex:none;width:16px;height:16px}
+.opt span{font-size:.94rem}
+.opt.rec{border-color:rgba(94,234,212,.34)}
+.opt.rec span::after{content:"recommended";font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(94,234,212,.4);border-radius:3px;padding:.1em .45em;margin-left:9px;white-space:nowrap}
+.opt:has(input:checked){border-color:var(--cyan);background:rgba(94,234,212,.07)}
+.why{font-size:.88rem;color:var(--ink-mute);margin:12px 0 0;padding-top:12px;border-top:1px solid var(--border)}
+
+textarea{width:100%;background:var(--bg-inset);border:1px solid var(--border);border-radius:8px;color:var(--ink);
+  font:inherit;font-size:.92rem;padding:11px 13px;resize:vertical;min-height:62px;margin-top:12px}
+textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(94,234,212,.1)}
+textarea::placeholder{color:var(--ink-faint)}
+
+.ms{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;padding:16px 18px;border:1px solid var(--border);border-radius:10px;background:var(--bg-raised);margin:11px 0}
+.ms .id{font-family:var(--mono);font-weight:700;color:var(--cyan);font-size:.94rem}
+.ms .g{font-size:.94rem}
+.ms .g small{display:block;color:var(--ink-mute);font-size:.83rem;margin-top:5px}
+.seg{display:flex;gap:0;border:1px solid var(--border);border-radius:7px;overflow:hidden;flex:none}
+.seg label{padding:6px 11px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--ink-faint);border-right:1px solid var(--border);transition:.12s}
+.seg label:last-child{border-right:none}
+.seg input{display:none}
+.seg label:hover{background:var(--bg-inset);color:var(--ink)}
+.seg input:checked+span{}
+.seg label:has(input:checked){background:rgba(94,234,212,.15);color:var(--cyan)}
+.seg label.no:has(input:checked){background:rgba(244,114,182,.15);color:var(--rose)}
+.seg label.maybe:has(input:checked){background:rgba(251,191,36,.15);color:var(--amber)}
+
+ul.tight{margin:10px 0;padding-left:20px}
+ul.tight li{margin-bottom:8px}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(7,11,20,.93);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);padding:13px 22px;display:flex;gap:14px;align-items:center;justify-content:center;z-index:50}
+button{font:inherit;font-weight:620;font-size:.92rem;padding:11px 22px;border-radius:8px;cursor:pointer;border:1px solid var(--border-bright);background:var(--bg-raised);color:var(--ink-hi);transition:.14s}
+button:hover{border-color:var(--cyan);color:var(--cyan)}
+button.pri{background:var(--grad);border-color:transparent;color:#04121c;box-shadow:var(--glow-cyan)}
+button.pri:hover{filter:brightness(1.1);color:#04121c}
+.count{font-family:var(--mono);font-size:.76rem;color:var(--ink-faint)}
+
+footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color:var(--ink-faint);font-size:.85rem}
+@media(max-width:640px){.ms{grid-template-columns:1fr;gap:10px}header{padding-top:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">FutureIndustries · alignment review · 2026-08-03</p>
+  <h1>The answer we expected was <em>wrong</em>. Here's what the evidence actually supports.</h1>
+  <p class="sub">Three swarms, 33 agents, your whole game portfolio, and the FI codebase. The headline: your games don't fail on quality — they fail to <em>finish</em>. And the fix is smaller than the research says.</p>
+  <div class="meta">
+    <span>561 claims → 84 rules</span><span>9 of 84 verified-primary</span><span>14 project records</span><span>gate hypothesis REFUTED</span>
+  </div>
+</header>
+
+<h2><span class="num">01 · the correction</span>I was heading toward "add machine-enforced gates." That's refuted.</h2>
+<p class="lede">An adversarial pass tried to break the obvious thesis and succeeded. Every claim below was then re-checked by hand against your disk or the live web.</p>
+
+<div class="card hot">
+<div class="tw"><table>
+<thead><tr><th>Evidence</th><th style="width:96px">Check</th></tr></thead>
+<tbody>
+<tr><td><strong>The correlation runs backwards.</strong> P(good outcome | strong gate) = <strong>1/5</strong>. P(good | weak or no gate) = <strong>2/3</strong>. Your four most gate-engineered projects are dead or frozen.</td><td><span class="tag t-info">forensics</span></td></tr>
+<tr><td><strong>CURFEW — your cleanest success</strong> (shipped live, complete loop, one agent session, one day) has <strong>no <code>tools/</code>, no judge, no visual gate.</strong></td><td><span class="tag t-ok">verified</span></td></tr>
+<tr><td><strong>NileInSpace already ran this experiment.</strong> <code>tools/aaa-judge.py</code> — six objective visual gates, real <code>SystemExit</code>. Reached <strong>PASS 6/6, held four iterations.</strong> You abandoned the project and rebuilt from scratch 110 minutes later.</td><td><span class="tag t-ok">verified</span></td></tr>
+<tr><td>Both times a gate printed PASS in your portfolio, <strong>you overruled it.</strong></td><td><span class="tag t-info">forensics</span></td></tr>
+<tr><td><strong>Gates are blind where defects live.</strong> In APS: deleting <code>style.css</code> (2,165 lines), gutting <code>index.html</code>, and throwing at the top of <code>ui.js</code> all left the suite at <strong>92/92, exit 0.</strong></td><td><span class="tag t-info">forensics</span></td></tr>
+<tr><td><strong>Zero CI, zero non-sample git hooks</strong> across six repos. The treatment was never administered.</td><td><span class="tag t-ok">verified</span></td></tr>
+</tbody></table></div>
+</div>
+
+<h2><span class="num">02 · what survives</span>Executable criteria don't cause quality. They cause <em>termination</em>.</h2>
+<p>One control survives every objection, because it holds person, day, scope, genre and model constant:</p>
+
+<div class="card key">
+<p style="margin-bottom:12px"><strong>Immortal Shores — same you, same eight-hour sitting, two halves.</strong></p>
+<p style="margin-bottom:8px">⟶ <strong>Mechanics half.</strong> Criterion was <code>critical-audit.mjs</code> with <code>process.exit(fail&gt;0?1:0)</code>. <span class="tag t-ok">converged 2h06m</span></p>
+<p style="margin-bottom:0">⟶ <strong>Visual half.</strong> Criterion was 30 rounds of hand-written markdown. <span class="tag t-no">5h33m · never closed</span></p>
+</div>
+
+<p>Confluence repeats it across one week: v1 retired a <em>passing</em> executable gate for an unpassable prose one → 261 judge runs in a day → rewrite. v2 replaced prose with scripts that exit non-zero → 8/8 on three consecutive runs.</p>
+<p>Prose criteria never terminate. They always find one more complaint, and they rescale between rounds — one judge rescored every dimension 1.5–3 points lower <strong>with no regression</strong>. A boolean can't do that.</p>
+
+<div class="pull">Your games don't fail. They never finish, and then the next one starts.
+<span class="who">6 hours between 2342 going dark and CURFEW being created. 110 minutes between NileInSpace's last judge run and the Confluence rewrite.</span></div>
+
+<h3>And the confound that beats gates outright</h3>
+<p>Every project that stalled on <em>look</em> routes art through a <strong>binary pipeline you have to drive by hand</strong> — 16 hand-exported <code>.glb</code>; six script versions for one plate. Both projects that came out <strong>coherent</strong> have <strong>zero external assets</strong>: Crookemon2's 29 creatures are 218KB of painter <em>code</em>; CURFEW's manifest says <em>"Zero external assets."</em></p>
+<p>When art is code, the agent fixes the defect and re-renders <strong>in one turn</strong>. When art is a <code>.glb</code>, every round costs a human Blender session and the loop physically cannot close. <strong><code>FI-GRAPHICS.md</code> already mandates this.</strong> The failures violated your own doctrine, in the same zip that ships it.</p>
+
+<h2><span class="num">03 · the save</span>The plan's headline milestone would have deleted a working safety mechanism.</h2>
+<div class="card">
+<p>The synthesis wanted to "delete the loop that never ends" by removing <code>JUDGE_POLICY</code>'s blocking rounds. The feasibility pass caught it, and I verified the catch:</p>
+<ul class="tight">
+<li><code>export-pack.js:48</code> — <em>"<code>${judge.rounds}</code> rounds is a cap this pack set, not a number you pick. <strong>Exhaust it and you STOP</strong>."</em></li>
+<li><code>fi-judge/SKILL.md:70</code> — <em>"Loop until PASS <strong>or until the stamped budget is spent, whichever comes first</strong>."</em></li>
+<li><code>SKILL.md:78–79</code> — plateau exit at two flat rounds, then honest FAIL.</li>
+</ul>
+<p style="margin-bottom:0"><strong>Your shipped judge already terminates by construction.</strong> The 261-run day came from an <em>unbudgeted</em> prose judge. And Immortal Shores has no <code>FI-PLAYBOOK.md</code>, no <code>AGENTS.md</code>, no <code>.claude/</code> — <strong>your canonical failure wasn't running your own pack.</strong></p>
+</div>
+
+<div class="card key">
+<p style="margin:0"><strong>The real defect is one word.</strong> <code>refs: 'required'</code> orders the judge to fetch <em>real screenshots of commercial titles</em> and diff them against a canvas game. That's the painted-concept-board target — shipped as policy. A three-line fix, not a deletion.</p>
+</div>
+
+<h2><span class="num">04 · the design</span>FI Floor — three pillars</h2>
+<p class="lede">Named <strong>FI Floor</strong>, not FI Harness — the store says <code>fi-harness</code> is already the orchestrator cockpit. Mark each pillar below.</p>
+
+<div class="dec">
+  <h3><span class="qid">P1</span> Roles, not hex</h3>
+  <p>Every color becomes a semantic role (<code>ink</code>, <code>paper</code>, <code>ground</code>, <code>accent</code>, <code>hazard</code>…). The creator never types a color — they point at one of ~24 hand-tuned palettes rendered as <strong>live moving tiles</strong>. Must work as canvas <code>fillStyle</code>, <strong>SVG <code>fill</code> attribute</strong>, and CSS var — CURFEW's art is 43 inline SVG paths and zero canvas.</p>
+  <p class="why"><strong>Why it earns its place:</strong> the lever already exists and nobody pulled it — every shell routes color through <code>colors.a/b/c</code> in one file, and <code>E.drawSprite</code> already takes a color argument. It reaches every creator on day one, and it's a <em>removal</em>: the ways to produce an ugly palette drop to zero because the operation isn't offered.</p>
+  <div class="seg" style="margin-top:14px">
+    <label><input type="radio" name="p1" value="build" checked><span>build it</span></label>
+    <label class="maybe"><input type="radio" name="p1" value="revise"><span>revise</span></label>
+    <label class="no"><input type="radio" name="p1" value="cut"><span>cut</span></label>
+  </div>
+  <textarea data-note="P1" placeholder="Notes on Roles-not-hex…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">P2</span> Painters, not files</h3>
+  <p>Art is a function of <code>(role, seed, sim state)</code>, shipped as plain JS. <strong>Tier 1 stops shipping <code>assets/prompts/AI-PROMPTS.txt</code> and the empty <code>assets/sprites/</code></strong> — that folder is where art vintages breed. Tiers 2–3 keep a narrow singular-asset lane.</p>
+  <p class="why"><strong>Named risk:</strong> FI now owns the art direction of every Arcade game, so the failure mode flips from <em>inconsistent</em> to <em>identical</em>. The structural answer is that a look pack is a parts vocabulary plus a recombination table — CURFEW gets 29 enemies from ~5 bodies and ~20 accessories — but that's an argument, not a proof.</p>
+  <div class="seg" style="margin-top:14px">
+    <label><input type="radio" name="p2" value="build" checked><span>build it</span></label>
+    <label class="maybe"><input type="radio" name="p2" value="revise"><span>revise</span></label>
+    <label class="no"><input type="radio" name="p2" value="cut"><span>cut</span></label>
+  </div>
+  <textarea data-note="P2" placeholder="Notes on Painters-not-files…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">P3</span> Point the target at something reachable</h3>
+  <p><code>refs:'required'</code> → <code>'optional'</code> at all three tiers. Sweep <code>fi-visual-overhaul/SKILL.md:49-51</code> and the published tier-card copy. <strong>Keep rounds 1/3/5, the plateau exit, the honest-FAIL path.</strong> Type "like Hollow Knight" and you get a card showing the closest thing your medium can actually reach, rendering live.</p>
+  <p class="why"><strong>Open correction:</strong> a mood note must have a <em>destination</em> (palette suggestion, motif seeding), not be formally discarded. Naming games they love is the only design vocabulary a non-expert has.</p>
+  <div class="seg" style="margin-top:14px">
+    <label><input type="radio" name="p3" value="build" checked><span>build it</span></label>
+    <label class="maybe"><input type="radio" name="p3" value="revise"><span>revise</span></label>
+    <label class="no"><input type="radio" name="p3" value="cut"><span>cut</span></label>
+  </div>
+  <textarea data-note="P3" placeholder="Notes on reachable targets…"></textarea>
+</div>
+
+<h2><span class="num">05 · what got cut</span>The centerpiece was killed by its own feasibility pass</h2>
+<div class="card">
+<p>The synthesis proposed <code>FINISH.html</code> — a seeded bot that plays your game and prints five plain sentences, plus a mutation self-test proving the checks can see. It was the best-sounding idea in the whole exercise. It's cut from v1:</p>
+<ul class="tight">
+<li><strong>It contradicts itself.</strong> CURFEW's <code>test.html</code> loads only <code>rng</code>/<code>data-*</code>/<code>engine</code> — never <code>ui.js</code>, <code>art.js</code>, or the 22.5KB stylesheet. It's a headless <em>engine</em> driver, blind to the render layer. A palette check <em>needs</em> the render layer. You can't have both from one runner.</li>
+<li><strong>It re-derives the APS failure one level up</strong> and stamps it with authority.</li>
+<li><strong><code>UNKNOWN</code> fires hardest when the creator is most original</strong> — and the skill would make repairing FI's introspection harness the agent's top priority.</li>
+<li><strong>The agent can't own the criterion that ends its own session.</strong> Its cheapest repair for "nobody won in eight runs" is always <em>loosen the bot</em>.</li>
+</ul>
+<p style="margin-bottom:0"><strong>What survives, downgraded:</strong> ship each shell with a CURFEW-shaped <code>test.html</code> already green, and tell the agent to keep it green — <strong>never as a stop rule.</strong> It forces a headless-drivable core, which is the real architectural payload of CURFEW.</p>
+</div>
+
+<h2><span class="num">06 · sequence</span>Build order</h2>
+<p class="lede">M1 is worth doing even if nothing else is.</p>
+
+<div class="ms"><span class="id">M1</span><span class="g">Point the target at something reachable<small><code>refs</code> → optional at all tiers · sweep visual-overhaul + wizard copy · keep the round budget · <strong>exit: behavioral, build the same one-liner pre/post and compare rounds</strong> · 2–4 days</small></span>
+<div class="seg"><label><input type="radio" name="m1" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m1" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m1" value="cut"><span>cut</span></label></div></div>
+
+<div class="ms"><span class="id">M2</span><span class="g">Roles + the Look Picker across every shell<small>~24 ramps · hex-literal grep gate · opens from <code>file://</code> in 3 browsers · works in canvas, SVG and CSS · ~1 week</small></span>
+<div class="seg"><label><input type="radio" name="m2" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m2" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m2" value="cut"><span>cut</span></label></div></div>
+
+<div class="ms"><span class="id">M3</span><span class="g">Kill the vintage farm<small>drop <code>AI-PROMPTS.txt</code> + <code>assets/sprites/</code> at tier 1 · ship <code>NEXT-TIME.md</code> · publish the pass budget · 2–3 days</small></span>
+<div class="seg"><label><input type="radio" name="m3" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m3" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m3" value="cut"><span>cut</span></label></div></div>
+
+<div class="ms"><span class="id">M4</span><span class="g">The real test — one pack, one agent, one sitting<small>You open <strong>no image editor</strong> and write <strong>no prose judgement.</strong> Recorded honestly either way. <strong>This is the only outcome that matters.</strong></small></span>
+<div class="seg"><label><input type="radio" name="m4" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m4" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m4" value="cut"><span>cut</span></label></div></div>
+
+<div class="ms"><span class="id">M5</span><span class="g">Seeded <code>test.html</code> per shell, green on arrival<small>Agent keeps it green. Never a stop rule. Conditional. ~1 week</small></span>
+<div class="seg"><label><input type="radio" name="m5" value="yes"><span>go</span></label><label class="maybe"><input type="radio" name="m5" value="hold" checked><span>hold</span></label><label class="no"><input type="radio" name="m5" value="cut"><span>cut</span></label></div></div>
+
+<h2><span class="num">07 · your call</span>Five decisions research can't make</h2>
+
+<div class="dec">
+  <h3><span class="qid">Q1</span> The name</h3>
+  <p><code>fi-harness</code> is already the orchestrator cockpit in the store. Two products, one name, one inbox.</p>
+  <div class="opts">
+    <label class="opt rec"><input type="radio" name="q1" value="fi-floor" checked><span><strong>FI Floor</strong> for this; leave the cockpit alone — it has a build log, a memory topic and a dogfood thread under its name</span></label>
+    <label class="opt"><input type="radio" name="q1" value="rename-cockpit"><span>Keep FI Harness here, rename the cockpit (it's pre-public)</span></label>
+    <label class="opt"><input type="radio" name="q1" value="later"><span>A third name, decided when landing copy is written in your voice</span></label>
+  </div>
+  <textarea data-note="Q1" placeholder="…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">Q2</span> Does tier 1 really stop shipping the image lane?</h3>
+  <div class="opts">
+    <label class="opt rec"><input type="radio" name="q2" value="remove" checked><span><strong>Remove at tier 1, keep at tiers 2–3.</strong> A toggle is worse than either — it puts the expertise decision back on the beginner. Tier 2 <em>is</em> the toggle.</span></label>
+    <label class="opt"><input type="radio" name="q2" value="advisory"><span>Keep them, mark advisory in the README</span></label>
+    <label class="opt"><input type="radio" name="q2" value="toggle"><span>Wizard toggle for creators who want the image lane on the free path</span></label>
+  </div>
+  <textarea data-note="Q2" placeholder="…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">Q3</span> What's the published build-pass budget?</h3>
+  <p>M1 keeps <code>judge.rounds</code>, but the pack has never published a <em>build-pass</em> budget. A budget terminates unconditionally; a predicate only terminates if it's reachable.</p>
+  <div class="opts">
+    <label class="opt rec"><input type="radio" name="q3" value="3-90" checked><span><strong>3 build passes at tier 1 + "past 90 minutes, hand back."</strong> Zero new code, published in the pack and the wizard.</span></label>
+    <label class="opt"><input type="radio" name="q3" value="passes-only"><span>Pass count only, no wall clock</span></label>
+    <label class="opt"><input type="radio" name="q3" value="none"><span>No new budget — the judge rounds are enough</span></label>
+  </div>
+  <textarea data-note="Q3" placeholder="Your numbers…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">Q4</span> The identical-catalog question — decided now, not at milestone six</h3>
+  <p>If FI owns the art direction, the catalog stops being inconsistent and starts being <em>identical</em>. FI cannot un-ship five games that look like siblings.</p>
+  <div class="opts">
+    <label class="opt rec"><input type="radio" name="q4" value="upfront" checked><span><strong>Set the variance bar before five games ship from one pack</strong> — palette varies far more aggressively per game than instinct suggests</span></label>
+    <label class="opt"><input type="radio" name="q4" value="gate"><span>Ship five, then judge side by side; add motif variation if they're siblings</span></label>
+    <label class="opt"><input type="radio" name="q4" value="accept"><span>Accept a house style — coherent floor is worth a family resemblance</span></label>
+  </div>
+  <textarea data-note="Q4" placeholder="…"></textarea>
+</div>
+
+<div class="dec">
+  <h3><span class="qid">Q5</span> Is this worth weeks at all?</h3>
+  <p>Standing strategy says the income wedge is FIMemory and games are supporting proof. FI Floor is supply-side work.</p>
+  <div class="opts">
+    <label class="opt rec"><input type="radio" name="q5" value="m1-then" checked><span><strong>M1 regardless</strong> (2–4 days, removes an unreachable target you're actively shipping). M2–M4 only if Arcade supply is the current bottleneck.</span></label>
+    <label class="opt"><input type="radio" name="q5" value="all"><span>Build M1–M4 now — finished games are what make the Arcade worth visiting</span></label>
+    <label class="opt"><input type="radio" name="q5" value="park"><span>Park all of it; FIMemory first</span></label>
+  </div>
+  <textarea data-note="Q5" placeholder="…"></textarea>
+</div>
+
+<h2><span class="num">08 · gaps</span>What this doesn't answer</h2>
+<div class="card">
+<ul class="tight">
+<li><strong>Cost model.</strong> Nobody priced this. The unit isn't the run — it's the <em>agent turn</em>, billed to the creator's metered subscription. <em>"Costs money: No"</em> is true about FI's bill and silently false about theirs.</li>
+<li><strong>Verification is deferred, not solved.</strong> The render-layer-vs-headless contradiction is real and unresolved. Decide it in writing before any future attempt.</li>
+<li><strong>Godot gets nothing</strong> in v1. Named as not-done rather than shipped half-done.</li>
+<li><strong>Genre vocabularies still don't match.</strong> The Arcade speaks <code>colony/trade/async/survivor/…</code>; the shells speak <code>arcade/puzzle/sim/narrative/neutral</code>. Also: <code>pickWebShell</code> routes <code>/deck/</code> to the arcade twitch shell.</li>
+<li><strong>Content safety and rating.</strong> <code>fi-dev-server.py</code> carries <code>"rating": None</code> and never validates one, on a public arcade with no classifier. Out of scope here — don't let it stay out of scope everywhere.</li>
+<li><strong>Immortal Shores isn't frozen.</strong> Your store has entries from <em>today</em> (12:11/12:40/13:21) describing <code>author_kits.py</code> work that exists nowhere on this PC. Live cross-machine divergence; the "canonical failure" framing is stale.</li>
+</ul>
+</div>
+
+<h2><span class="num">09 · anything else</span></h2>
+<textarea data-note="FREEFORM" placeholder="What did I get wrong? What's missing? What do you want to change?" style="min-height:130px"></textarea>
+
+<footer>
+  <p>Contract of record: <code>docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md</code> · branch <code>synthesis/fi-floor-2026-08-03</code></p>
+  <p>Swarm A: 16 agents · Swarm B: 8 agents · Swarm C: 9 agents. Everything marked <span class="tag t-ok">verified</span> was checked by hand against disk or the live web — not by a subagent.</p>
+</footer>
+</div>
+
+<div class="bar">
+  <span class="count" id="count"></span>
+  <button class="pri" onclick="save()">Download answers</button>
+  <button onclick="copyAll()">Copy to clipboard</button>
+</div>
+
+<script>
+const KEY='fi-floor-review-2026-08-03';
+function state(){
+  const o={choices:{},notes:{}};
+  document.querySelectorAll('input[type=radio]:checked').forEach(r=>o.choices[r.name]=r.value);
+  document.querySelectorAll('textarea[data-note]').forEach(t=>{if(t.value.trim())o.notes[t.dataset.note]=t.value.trim()});
+  return o;
+}
+function restore(){
+  try{
+    const o=JSON.parse(localStorage.getItem(KEY)||'{}');
+    Object.entries(o.choices||{}).forEach(([n,v])=>{
+      const el=document.querySelector(`input[name="${n}"][value="${v}"]`); if(el)el.checked=true;});
+    Object.entries(o.notes||{}).forEach(([n,v])=>{
+      const el=document.querySelector(`textarea[data-note="${n}"]`); if(el)el.value=v;});
+  }catch(e){}
+  tick();
+}
+function tick(){
+  const n=Object.keys(state().notes).length;
+  document.getElementById('count').textContent=n?`${n} note${n>1?'s':''} · autosaved`:'autosaved locally';
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify(state()));tick();}
+document.addEventListener('input',persist);
+document.addEventListener('change',persist);
+
+const LABEL={p1:'Pillar 1 · Roles not hex',p2:'Pillar 2 · Painters not files',p3:'Pillar 3 · Reachable targets',
+  m1:'M1 · Reachable target fix',m2:'M2 · Roles + Look Picker',m3:'M3 · Kill the vintage farm',m4:'M4 · The real test',m5:'M5 · Seeded test.html',
+  q1:'Q1 · The name',q2:'Q2 · Tier-1 image lane',q3:'Q3 · Build-pass budget',q4:'Q4 · Identical catalog',q5:'Q5 · Worth the weeks'};
+
+function md(){
+  const s=state();
+  let o='# FI Floor — review answers\n\n**Date:** 2026-08-03  \n**Reviewer:** Eric  \n**Doc:** docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md  \n**Branch:** synthesis/fi-floor-2026-08-03\n\n## Decisions\n\n| Item | Answer |\n|---|---|\n';
+  Object.entries(LABEL).forEach(([k,l])=>{ if(s.choices[k]) o+=`| ${l} | **${s.choices[k]}** |\n`; });
+  const notes=Object.entries(s.notes);
+  if(notes.length){
+    o+='\n## Notes\n\n';
+    notes.forEach(([k,v])=>{ o+=`### ${LABEL[k]||k}\n\n${v}\n\n`; });
+  }
+  o+='\n---\n\nPaste this back into the session to drive the next pass.\n';
+  return o;
+}
+function save(){
+  const b=new Blob([md()],{type:'text/markdown'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download='FI-FLOOR-REVIEW-ANSWERS.md'; a.click();
+  URL.revokeObjectURL(a.href);
+}
+async function copyAll(){
+  try{ await navigator.clipboard.writeText(md()); const b=event.target; const t=b.textContent;
+    b.textContent='copied ✓'; setTimeout(()=>b.textContent=t,1400);
+  }catch(e){ alert('Copy failed — use Download instead.'); }
+}
+restore();
+</script>
+</body>
+</html>
