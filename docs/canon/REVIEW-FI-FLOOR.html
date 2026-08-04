@@ -237,6 +237,34 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
   <textarea data-note="P3" placeholder="Notes on reachable targets…"></textarea>
 </div>
 
+<div class="dec">
+  <h3><span class="qid">P4</span> The Look Board <span style="font-family:var(--mono);font-size:.66rem;color:var(--amber);letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(251,191,36,.4);border-radius:3px;padding:.1em .5em;margin-left:6px">your requirement</span></h3>
+  <p>Every asset the pack will draw, on one board <strong>before a line of game code is written</strong>. Approved = <strong>direction, not pixels</strong> — the builder still draws each asset in place, fit to its own environment, scale and perspective.</p>
+  <p>This attacks the verified <em>criteria-authored-mid-flight</em> failure: Immortal Shores added acceptance criteria three times during the build and <strong>the score dropped every time</strong> (8.0→6.6, then 7.6→7.1). The gate couldn't close because the gate was still being written.</p>
+
+  <div class="card hot" style="margin:18px 0">
+  <p style="margin-bottom:10px"><strong>You built this on 2026-08-02 and it failed.</strong> <code>ART-STORYBOARD-ANSWERS.json</code>: ten boards approved <code>23:13:17.978</code> → <code>23:13:30.605</code>. <strong>12.6 seconds. ~1.26s each. All yes. No per-item notes.</strong> <span class="tag t-ok">verified</span></p>
+  <p style="margin-bottom:0">And <code>ART-STORYBOARD-APPROVED.md</code> already said <em>"Boards are inspiration only — not final meshes/sprites."</em> You'd already written the constraint. It didn't hold.</p>
+  </div>
+
+  <div class="tw"><table>
+  <thead><tr><th>What went wrong</th><th>What's different</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Approval carried no information.</strong> A yes/no can always be clicked.</td><td><strong>It's a chooser, not an approver.</strong> Every item is pick-one-of-N. You can't advance without choosing, and a pick carries information even made in a second. Picking is also <em>easier</em> for a beginner than critiquing.</td></tr>
+  <tr><td><strong>"Inspiration only" was doctrine in a doc</strong>, not a property of the mechanism — the judge diffed against those boards for 30 rounds anyway.</td><td><strong>Only parameters are frozen</strong> — palette, density, motif, silhouette class, notes. Never an image path. The judge is structurally unable to receive an external reference because none exists in the pack.</td></tr>
+  <tr><td><strong>The boards were Grok Imagine JPEGs</strong> — painted art in a medium the glTF kit could never reach.</td><td><strong>The board is drawn by the game's own renderer</strong>, on its own projection, at the chosen palette. Reachable by construction. Only possible because art is painters.</td></tr>
+  </tbody></table></div>
+
+  <p class="why"><strong>Notes primary, verdict derived.</strong> The one part of the 08-02 attempt that carried real signal was your free-text "Director notes (locked law)" — money-shot POV, whole settlement visible, not a low mid-iso close-up. That shaped the build. The yes/no column shaped nothing.<br><br>
+  <strong>Open risk:</strong> forced choice is a hypothesis about your own behaviour, not a proven fix. If the next board clears in 15 seconds with no notes, it has failed again and should be <em>cut</em>, not reinforced. So it ships instrumented — median time-per-item must exceed 8s with ≥3 items carrying notes, or the mechanism dies.</p>
+  <div class="seg" style="margin-top:14px">
+    <label><input type="radio" name="p4" value="build" checked><span>build it</span></label>
+    <label class="maybe"><input type="radio" name="p4" value="revise"><span>revise</span></label>
+    <label class="no"><input type="radio" name="p4" value="cut"><span>cut</span></label>
+  </div>
+  <textarea data-note="P4" placeholder="Is forced-choice the right anti-rubber-stamp mechanism? What would actually make you slow down on a board?"></textarea>
+</div>
+
 <h2><span class="num">05 · what got cut</span>The centerpiece was killed by its own feasibility pass</h2>
 <div class="card">
 <p>The synthesis proposed <code>FINISH.html</code> — a seeded bot that plays your game and prints five plain sentences, plus a mutation self-test proving the checks can see. It was the best-sounding idea in the whole exercise. It's cut from v1:</p>
@@ -260,6 +288,9 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 
 <div class="ms"><span class="id">M3</span><span class="g">Kill the vintage farm<small>drop <code>AI-PROMPTS.txt</code> + <code>assets/sprites/</code> at tier 1 · ship <code>NEXT-TIME.md</code> · publish the pass budget · 2–3 days</small></span>
 <div class="seg"><label><input type="radio" name="m3" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m3" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m3" value="cut"><span>cut</span></label></div></div>
+
+<div class="ms"><span class="id">M3b</span><span class="g">The Look Board<small>Every painter rendered by the game's own renderer · pick-one-of-N · notes primary · freezes parameters not images · <strong>exit: median &gt;8s per item and ≥3 items with notes, or it's cut</strong> · ~1 week</small></span>
+<div class="seg"><label><input type="radio" name="m3b" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m3b" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m3b" value="cut"><span>cut</span></label></div></div>
 
 <div class="ms"><span class="id">M4</span><span class="g">The real test — one pack, one agent, one sitting<small>You open <strong>no image editor</strong> and write <strong>no prose judgement.</strong> Recorded honestly either way. <strong>This is the only outcome that matters.</strong></small></span>
 <div class="seg"><label><input type="radio" name="m4" value="yes" checked><span>go</span></label><label class="maybe"><input type="radio" name="m4" value="hold"><span>hold</span></label><label class="no"><input type="radio" name="m4" value="cut"><span>cut</span></label></div></div>
@@ -376,8 +407,8 @@ function persist(){localStorage.setItem(KEY,JSON.stringify(state()));tick();}
 document.addEventListener('input',persist);
 document.addEventListener('change',persist);
 
-const LABEL={p1:'Pillar 1 · Roles not hex',p2:'Pillar 2 · Painters not files',p3:'Pillar 3 · Reachable targets',
-  m1:'M1 · Reachable target fix',m2:'M2 · Roles + Look Picker',m3:'M3 · Kill the vintage farm',m4:'M4 · The real test',m5:'M5 · Seeded test.html',
+const LABEL={p1:'Pillar 1 · Roles not hex',p2:'Pillar 2 · Painters not files',p3:'Pillar 3 · Reachable targets',p4:'Pillar 4 · The Look Board',
+  m1:'M1 · Reachable target fix',m2:'M2 · Roles + Look Picker',m3:'M3 · Kill the vintage farm',m3b:'M3b · The Look Board',m4:'M4 · The real test',m5:'M5 · Seeded test.html',
   q1:'Q1 · The name',q2:'Q2 · Tier-1 image lane',q3:'Q3 · Build-pass budget',q4:'Q4 · Identical catalog',q5:'Q5 · Worth the weeks'};
 
 function md(){
