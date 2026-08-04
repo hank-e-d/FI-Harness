@@ -1,6 +1,7 @@
-# FI Floor — synthesis of the research swarm, and the product outline
+# FI Foundation — synthesis of the research swarm, and the product outline
 
-- **Status:** Proposal for owner alignment. Not built. Not approved.
+- **Status:** **Design ratified by the owner 2026-08-03. Execution timing unresolved — see §5.1.** Nothing built.
+- **Name:** **FI Foundation** (owner, 2026-08-03). Not FI Harness — that is the orchestrator cockpit. Supersedes the working name "FI Floor" used in the first draft.
 - **Date:** 2026-08-03
 - **Supersedes:** nothing. `docs/00-thesis.md` … `docs/07-success-metrics.md` remain the prior design spine; where this document contradicts them it says so explicitly and gives the evidence.
 - **Trigger:** `AGENTS.md` froze synthesis until the owner called research intake done. This document is that call.
@@ -158,11 +159,11 @@ That is **confound #2 — target-medium mismatch — shipped as policy.** A canv
 
 ---
 
-## 3. The product: **FI Floor**
+## 3. The product: **FI Foundation**
 
 > **The floor every FutureIndustries game starts on: it already looks deliberate before you write a word, and nothing in the pack points it at a target it cannot reach.**
 
-**Named FI Floor, not FI Harness.** The Gestalt store confirms `fi-harness` is already the orchestrator cockpit (Weyla). Two products, one name, one founder's inbox is a real cost. Per the standing ship-over-IP rule, the name does not gate the build — decide it once, at landing-copy time, and move on.
+**Named FI Foundation, not FI Harness.** The Gestalt store confirms `fi-harness` is already the orchestrator cockpit (Weyla). Two products, one name, one founder's inbox is a real cost. Per the standing ship-over-IP rule, the name does not gate the build — decide it once, at landing-copy time, and move on.
 
 ### 3.1 What it is not
 
@@ -253,12 +254,44 @@ Each milestone is independently shippable. **M1 alone is worth doing even if not
 
 ---
 
-## 5. Owner decisions
+## 5. Owner decisions — **ANSWERED 2026-08-03**
+
+Source: `FI-FOUNDATION-REVIEW-ANSWERS.md`, exported from the review page.
+
+| Item | Ruling |
+|---|---|
+| Pillar 1 · Roles not hex | **BUILD** |
+| Pillar 2 · Painters not files | **BUILD** |
+| Pillar 3 · Reachable targets | **BUILD** |
+| Pillar 4 · The Look Board | **BUILD** |
+| M1 · Reachable-target fix | **GO** |
+| M2 · Roles + Look Picker | **GO** |
+| M3 · Kill the vintage farm | **GO** |
+| M3b · The Look Board | **GO** |
+| M4 · The real test | **GO** |
+| M5 · Seeded `test.html` | **HOLD** |
+| Q1 · Name | **FI Foundation** |
+| Q2 · Tier-1 image lane | **REMOVE** at tier 1, keep at tiers 2–3 |
+| Q3 · Build-pass budget | **3 build passes + 90-minute hand-back** |
+| Q4 · Identical catalog | **Set the variance bar UP FRONT**, not at M6 |
+| Q5 · Worth the weeks | **PARK** |
+
+### 5.1 The one unresolved item
+
+**Q5 = PARK contradicts M1–M4 = GO on its face.** The most likely reading is *"the design is right; execution waits behind FIMemory"* — the milestone toggles answered *is this the right milestone*, and Q5 answered *when*. Under that reading the plan is ratified and shelved, which is coherent and is how this document is currently marked.
+
+**The cost of parking, stated once so it is a decision rather than a side effect:** M1 is 2–4 days and removes a defect FI is shipping **right now**. Every tier-2 and tier-3 pack exported today instructs the agent to fetch real screenshots of commercial titles and diff them against a canvas or SVG game (`refs: 'required'`, plus an independent copy in `fi-visual-overhaul/SKILL.md:49-51`). That is the Immortal Shores failure encoded as policy, and parking means it keeps going out.
+
+**Nothing is being built until this is resolved.**
+
+---
+
+### 5.2 The original questions and reasoning (retained for the record)
 
 These are yours. Research cannot settle them and the design branches on each.
 
 **Q1 — The name.** `fi-harness` is already the orchestrator cockpit in the store.
-→ *Recommend:* **FI Floor** for this; leave the cockpit alone (it has a build log, a memory topic, and a dogfood thread under its current name). Do not spend a day on it.
+→ *Recommend:* **FI Foundation** for this; leave the cockpit alone (it has a build log, a memory topic, and a dogfood thread under its current name). Do not spend a day on it.
 
 **Q2 — Does tier 1 really stop shipping `AI-PROMPTS.txt` and `assets/sprites/`?**
 → *Recommend:* **remove at tier 1, keep at tiers 2 and 3.** A toggle is worse than either option — it puts the expertise decision back on the beginner. Tier 2 *is* the toggle, and it already exists.
@@ -269,7 +302,7 @@ These are yours. Research cannot settle them and the design branches on each.
 **Q4 — The identical-catalog question, decided now rather than at M6.** If FI owns the art direction, the catalog stops being inconsistent and starts being *identical*. The structural answer is that a look pack is a parts vocabulary plus a recombination table (CURFEW gets 29 enemies from ~5 bodies and ~20 accessories) and variation compounds across seed × palette × density × motif — but that is an argument, not a proof.
 → *Recommend:* decide the acceptable variance bar **before** five games ship from one pack, because FI cannot un-ship them.
 
-**Q5 — Is this the right thing to spend weeks on at all?** The standing strategy says the income wedge is FIMemory and games are supporting proof. FI Floor is supply-side work.
+**Q5 — Is this the right thing to spend weeks on at all?** The standing strategy says the income wedge is FIMemory and games are supporting proof. FI Foundation is supply-side work.
 → *Recommend:* **M1 regardless** — it is 2–4 days and it removes an unreachable target FI is actively shipping. M2–M4 only if Arcade supply is the current bottleneck. This is a real strategic call, not a formality.
 
 ---

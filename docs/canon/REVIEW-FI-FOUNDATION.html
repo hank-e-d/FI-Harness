@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FI Floor — alignment review · 2026-08-03</title>
+<title>FI Foundation — alignment review · 2026-08-03</title>
 <style>
 :root{
   color-scheme: dark; accent-color:#5eead4;
@@ -197,8 +197,8 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 <p style="margin:0"><strong>The real defect is one word.</strong> <code>refs: 'required'</code> orders the judge to fetch <em>real screenshots of commercial titles</em> and diff them against a canvas game. That's the painted-concept-board target — shipped as policy. A three-line fix, not a deletion.</p>
 </div>
 
-<h2><span class="num">04 · the design</span>FI Floor — three pillars</h2>
-<p class="lede">Named <strong>FI Floor</strong>, not FI Harness — the store says <code>fi-harness</code> is already the orchestrator cockpit. Mark each pillar below.</p>
+<h2><span class="num">04 · the design</span>FI Foundation — three pillars</h2>
+<p class="lede">Named <strong>FI Foundation</strong>, not FI Harness — the store says <code>fi-harness</code> is already the orchestrator cockpit. Mark each pillar below.</p>
 
 <div class="dec">
   <h3><span class="qid">P1</span> Roles, not hex</h3>
@@ -304,7 +304,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
   <h3><span class="qid">Q1</span> The name</h3>
   <p><code>fi-harness</code> is already the orchestrator cockpit in the store. Two products, one name, one inbox.</p>
   <div class="opts">
-    <label class="opt rec"><input type="radio" name="q1" value="fi-floor" checked><span><strong>FI Floor</strong> for this; leave the cockpit alone — it has a build log, a memory topic and a dogfood thread under its name</span></label>
+    <label class="opt rec"><input type="radio" name="q1" value="fi-floor" checked><span><strong>FI Foundation</strong> for this; leave the cockpit alone — it has a build log, a memory topic and a dogfood thread under its name</span></label>
     <label class="opt"><input type="radio" name="q1" value="rename-cockpit"><span>Keep FI Harness here, rename the cockpit (it's pre-public)</span></label>
     <label class="opt"><input type="radio" name="q1" value="later"><span>A third name, decided when landing copy is written in your voice</span></label>
   </div>
@@ -345,7 +345,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 
 <div class="dec">
   <h3><span class="qid">Q5</span> Is this worth weeks at all?</h3>
-  <p>Standing strategy says the income wedge is FIMemory and games are supporting proof. FI Floor is supply-side work.</p>
+  <p>Standing strategy says the income wedge is FIMemory and games are supporting proof. FI Foundation is supply-side work.</p>
   <div class="opts">
     <label class="opt rec"><input type="radio" name="q5" value="m1-then" checked><span><strong>M1 regardless</strong> (2–4 days, removes an unreachable target you're actively shipping). M2–M4 only if Arcade supply is the current bottleneck.</span></label>
     <label class="opt"><input type="radio" name="q5" value="all"><span>Build M1–M4 now — finished games are what make the Arcade worth visiting</span></label>
@@ -382,7 +382,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 </div>
 
 <script>
-const KEY='fi-floor-review-2026-08-03';
+const KEY='fi-foundation-review-2026-08-03';
 function state(){
   const o={choices:{},notes:{}};
   document.querySelectorAll('input[type=radio]:checked').forEach(r=>o.choices[r.name]=r.value);
@@ -413,7 +413,7 @@ const LABEL={p1:'Pillar 1 · Roles not hex',p2:'Pillar 2 · Painters not files',
 
 function md(){
   const s=state();
-  let o='# FI Floor — review answers\n\n**Date:** 2026-08-03  \n**Reviewer:** Eric  \n**Doc:** docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md  \n**Branch:** synthesis/fi-floor-2026-08-03\n\n## Decisions\n\n| Item | Answer |\n|---|---|\n';
+  let o='# FI Foundation — review answers\n\n**Date:** 2026-08-03  \n**Reviewer:** Eric  \n**Doc:** docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md  \n**Branch:** synthesis/fi-floor-2026-08-03\n\n## Decisions\n\n| Item | Answer |\n|---|---|\n';
   Object.entries(LABEL).forEach(([k,l])=>{ if(s.choices[k]) o+=`| ${l} | **${s.choices[k]}** |\n`; });
   const notes=Object.entries(s.notes);
   if(notes.length){
@@ -426,7 +426,7 @@ function md(){
 function save(){
   const b=new Blob([md()],{type:'text/markdown'});
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(b); a.download='FI-FLOOR-REVIEW-ANSWERS.md'; a.click();
+  a.href=URL.createObjectURL(b); a.download='FI-FOUNDATION-REVIEW-ANSWERS.md'; a.click();
   URL.revokeObjectURL(a.href);
 }
 async function copyAll(){
