@@ -1,6 +1,6 @@
 # FI Foundation — synthesis of the research swarm, and the product outline
 
-- **Status:** **Design ratified by the owner 2026-08-03. Execution timing unresolved — see §5.1.** Nothing built.
+- **Status:** **RATIFIED AND PARKED (owner, 2026-08-03).** The design is approved as the plan. **Execution waits behind FIMemory.** Nothing is built and nothing should be started — see §5.1 for the one cost this accepts.
 - **Name:** **FI Foundation** (owner, 2026-08-03). Not FI Harness — that is the orchestrator cockpit. Supersedes the working name "FI Floor" used in the first draft.
 - **Date:** 2026-08-03
 - **Supersedes:** nothing. `docs/00-thesis.md` … `docs/07-success-metrics.md` remain the prior design spine; where this document contradicts them it says so explicitly and gives the evidence.
@@ -276,13 +276,13 @@ Source: `FI-FOUNDATION-REVIEW-ANSWERS.md`, exported from the review page.
 | Q4 · Identical catalog | **Set the variance bar UP FRONT**, not at M6 |
 | Q5 · Worth the weeks | **PARK** |
 
-### 5.1 The one unresolved item
+### 5.1 Resolved: ratified and parked
 
-**Q5 = PARK contradicts M1–M4 = GO on its face.** The most likely reading is *"the design is right; execution waits behind FIMemory"* — the milestone toggles answered *is this the right milestone*, and Q5 answered *when*. Under that reading the plan is ratified and shelved, which is coherent and is how this document is currently marked.
+Q5 = PARK read against M1–M4 = GO. The owner confirmed the intended meaning: **the milestone answers ratify *which* work is right; Q5 answers *when*, and the answer is not yet.** The design is approved as the plan and shelved. FIMemory comes first, per the standing strategy that the income wedge is FIMemory and games are supporting proof.
 
-**The cost of parking, stated once so it is a decision rather than a side effect:** M1 is 2–4 days and removes a defect FI is shipping **right now**. Every tier-2 and tier-3 pack exported today instructs the agent to fetch real screenshots of commercial titles and diff them against a canvas or SVG game (`refs: 'required'`, plus an independent copy in `fi-visual-overhaul/SKILL.md:49-51`). That is the Immortal Shores failure encoded as policy, and parking means it keeps going out.
+**Do not start building any milestone in this document.** Pick it up when Arcade supply becomes the binding constraint.
 
-**Nothing is being built until this is resolved.**
+**The one cost this knowingly accepts.** M1 is 2–4 days and removes a defect FI ships **today**: every tier-2 and tier-3 pack instructs the agent to fetch real screenshots of commercial titles and diff them against a canvas or SVG game (`refs: 'required'` in `js/export-pack.js`, plus an independent copy in `.claude/skills/fi-visual-overhaul/SKILL.md:49-51`). That is the Immortal Shores failure encoded as policy, and it keeps going out while parked. Recorded here so it is a decision that was made, not one that was overlooked — **it is the first thing to do when this unparks.**
 
 ---
 

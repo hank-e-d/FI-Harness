@@ -2,17 +2,23 @@
 
 ## Current phase (2026-08-03)
 
-**Intake CLOSED by the owner. Synthesis landed; awaiting alignment.**
+**Intake CLOSED. Synthesis landed. Design RATIFIED AND PARKED by the owner — FIMemory comes first.**
 
-Read `docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md` before proposing anything. It supersedes the
-standing "do not synthesize" instruction below, and it contains findings that contradict the
-`docs/0N-*.md` spine — notably that the gate-centric reading was tested and **refuted**, and that the
-research corpus is only 9-of-84 verified-primary.
+Read `docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md` before proposing anything. The product is
+**FI Foundation** (not "FI Harness" — that name belongs to the orchestrator cockpit).
 
-Still in force: do **not** start kernel/pack implementation or Nexus integration. The design is a
-proposal for owner alignment, not an approved build.
+**Do not start building.** All milestones are approved-but-parked. Do not open kernel work, pack
+implementation, or Nexus integration. If you think something here should be built, say so and stop.
 
-Parking context: `notes/2026-08-03-session-fi-harness-direction.md` (not canon, now historical).
+The canon contains findings that **contradict** the `docs/0N-*.md` spine — the gate-centric reading
+was tested and **refuted**, the research corpus is only 9-of-84 verified-primary, and 43 of its
+claims are listed as never-canonize. Do not cite `docs/0N-*.md` or the raw research digests as
+settled without checking the canon first.
+
+When this unparks, **M1 is the first thing to do** (§5.1) — it is 2–4 days and removes a defect FI
+ships today.
+
+Historical: `notes/2026-08-03-session-fi-harness-direction.md` (not canon).
 
 ## Before you write
 
