@@ -1,6 +1,8 @@
 # FI Foundation — synthesis of the research swarm, and the product outline
 
-- **Status:** **RATIFIED AND PARKED (owner, 2026-08-03).** The design is approved as the plan. **Execution waits behind FIMemory.** Nothing is built and nothing should be started — see §5.1 for the one cost this accepts.
+- **Status:** **RATIFIED (owner, 2026-08-03), then AMENDED. Nothing built.** The four pillars stand. Two things in this document are superseded — read `01-BUILD-PLAN.md` first.
+- **⚠ SUPERSEDED HERE:** (a) §3's claim that the name "FI Harness" is taken — the cockpit was renamed **Weyla on 2026-07-20**, so the name is free; the advice not to spend time on naming stands but the reason was wrong. (b) The premise that the build pack "structurally cannot ship a runner" — **the no-terminal rule constrains what the creator types, not what their agent executes.** Exit codes, seeded headless bots and a pre-commit hook are all pack-shippable with zero installs. That error drove the whole PACK/STUDIO boundary and is corrected in `01-BUILD-PLAN.md` §1.
+- **Current plan:** `01-BUILD-PLAN.md` — one product, one unnamed bench, one trial. `02-TRIAL-PROTOCOL.md` — the weekend trial that decides everything downstream.
 - **Name:** **FI Foundation** (owner, 2026-08-03). Not FI Harness — that is the orchestrator cockpit. Supersedes the working name "FI Floor" used in the first draft.
 - **Date:** 2026-08-03
 - **Supersedes:** nothing. `docs/00-thesis.md` … `docs/07-success-metrics.md` remain the prior design spine; where this document contradicts them it says so explicitly and gives the evidence.
