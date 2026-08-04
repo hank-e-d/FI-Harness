@@ -20,8 +20,8 @@ The intuitive product — *"AI game-making is inconsistent because nothing is ma
 |---|---|
 | P(good outcome \| strong gate) = **1/5**. P(good \| weak or no gate) = **2/3**. The correlation runs *backwards*. | from forensics |
 | **CURFEW** — the portfolio's cleanest success (shipped live, complete loop, one agent session, one day, 3,694 lines) — has **no `tools/` directory, no judge, no visual gate**. | **VERIFIED** |
-| **NileInSpace already ran the experiment.** `tools/aaa-judge.py` is a real objective visual gate — 16,697 bytes, six checks, `return 0 if ok else 1`, `raise SystemExit(main())`. It reached **PASS 6/6 and held four iterations**. The project was abandoned anyway and rebuilt from scratch 110 minutes later. | **VERIFIED** |
-| Both times a gate printed PASS in this portfolio, **the human overruled it**. | from forensics |
+| **NileInSpace already ran the experiment — and the gate returned a FALSE PASS.** `tools/aaa-judge.py` is a real objective visual gate (16,697 bytes, six checks, `raise SystemExit(main())`). It reached **PASS 6/6 and held four iterations while the visuals were unshippable.** See §0.4 — this is the single most important correction in the document. | **VERIFIED** |
+| A gate printing PASS was twice followed by the owner rejecting the build. **Not capriciousness — in the NileInSpace case the gate was measuring the wrong thing entirely.** | see §0.4 |
 | Mutation test on AI Prompt Simulator: deleting `style.css` (2,165 lines), gutting `index.html` to `<html></html>`, and throwing at the top of `ui.js` **all left the suite at 92/92, exit 0**. | from forensics |
 | **Zero `.github` directories and zero non-sample git hooks** across six game repos. The "treatment" was never administered — there was no treated group. | **VERIFIED** |
 
@@ -54,6 +54,34 @@ Both projects that came out **coherent** have **zero external assets**:
 When art is code, the agent sees the defect, fixes it, and re-renders **in one turn**. When art is a `.glb`, every round costs a human Blender session and the loop physically cannot close.
 
 **`FI-GRAPHICS.md` already mandates exactly this** — systematic art drawn in code, image generation only for singular assets. The failures violated FI's own doctrine, in the same zip that ships the doctrine.
+
+### 0.4 The false pass, and the second requirement: **recoverability**
+
+*(Owner correction, 2026-08-03, after the first draft of this document. It replaces the reading that the owner "overruled a passing gate.")*
+
+> **Eric:** *"it was a false fail, the visuals were so bad I couldn't recover it and had to start from scratch."*
+
+**Verified in `tools/aaa-judge.py`.** Its six *"objective, non-negotiable gates (must all PASS for **ship**)"*:
+
+| # | Gate | What it actually tests |
+|---|---|---|
+| 1 | `FPS_GATE` | frame time ≤ 16.7ms | performance |
+| 2 | `DIAMOND_AUDIT` | `diamond-audit.py` exits 0 | one specific bug |
+| 3 | `EMPTY_PAD_READ` | cyan/teal pixels visible in pad zones | one specific bug |
+| 4 | `NO_FULLBLEED` | no sprite bottom-band fill ≥ 0.90 | one specific bug |
+| 5 | `BUILDING_COVERAGE` | ≥ N art files load with solid alpha | files exist |
+| 6 | `FRAME_DUMP` | money-shot PNG "is not blank/black" | screenshot isn't empty |
+
+**Not one measures whether it looks good.** Every one is *nothing is broken / something is present*. Gate 6 only checks the image isn't black. This is a **floor check labelled as a ship gate** — and that mislabelling is the defect, not the checks themselves.
+
+**Why it became terminal.** `js/station.js` is **5,973 of NileInSpace's 13,443 total JS lines — 44% of the codebase in one hand-written imperative render module that also owns world sim.** **VERIFIED.** So *"the visuals are bad"* meant *"rewrite six thousand lines."* Restarting from scratch 110 minutes later was the **cheaper option**, not a failure of nerve.
+
+**Two consequences for the product, both first-class:**
+
+1. **A green must never be readable as "good."** A floor check that fires on a broken-looking build teaches the creator the word means nothing. This is the same trap as `FINISHED (placeholder)` — the reason that framing was cut in §3.3. **Grade any proposed gate by asking what it would have said about NileInSpace on the day it was abandoned. If the answer is PASS, it is a floor check, and it must be labelled as one.**
+2. **Recoverability sits beside termination as a design goal.** The benefit of *painters, not files* (§3.2, Pillar 2) is not only that the loop closes faster. It is that **bad visuals stay recoverable instead of becoming terminal.** Under role-driven painters, "it looks wrong" is a re-render. Under a 6,000-line hand-written `station.js`, it is a rewrite — and a rewrite is where projects go to die.
+
+This correction *strengthens* Pillars 1 and 2 and it *narrows* what any future verification work may claim about itself.
 
 ---
 
@@ -159,6 +187,8 @@ Every color in every shell becomes a semantic role (`ink`, `paper`, `ground`, `s
 Art is a function of `(role, seed, sim state)`, shipped as plain JS in `web/looks/`. **Tier 1 stops shipping `assets/prompts/AI-PROMPTS.txt` and the empty `assets/sprites/` folder.** That folder is where art vintages breed — and the current export contradicts `FI-GRAPHICS.md` in the same zip that ships it. Tiers 2 and 3 keep a narrow singular-asset lane, quantized to the locked ramp on load.
 
 **Evidence:** CURFEW's `art.js` is 13,337 bytes producing 29 distinct enemies from a small body/accessory vocabulary plus an archetype table. That grammar already shipped and is already loved.
+
+**This pillar's real payload is recoverability (§0.4).** NileInSpace died because "the visuals are bad" meant rewriting a 5,973-line `station.js`. Under painters, the same sentence means editing one function and reloading. **A product that makes ugly recoverable is worth more than one that makes ugly detectable** — the owner could already see it was ugly.
 
 **The named risk, stated up front:** FI now owns the art direction of every Arcade game, so the failure mode flips from *inconsistent* to *identical*. Do not defer this to milestone six — see §5, Q4.
 

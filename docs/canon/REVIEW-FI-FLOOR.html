@@ -129,8 +129,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 <tbody>
 <tr><td><strong>The correlation runs backwards.</strong> P(good outcome | strong gate) = <strong>1/5</strong>. P(good | weak or no gate) = <strong>2/3</strong>. Your four most gate-engineered projects are dead or frozen.</td><td><span class="tag t-info">forensics</span></td></tr>
 <tr><td><strong>CURFEW — your cleanest success</strong> (shipped live, complete loop, one agent session, one day) has <strong>no <code>tools/</code>, no judge, no visual gate.</strong></td><td><span class="tag t-ok">verified</span></td></tr>
-<tr><td><strong>NileInSpace already ran this experiment.</strong> <code>tools/aaa-judge.py</code> — six objective visual gates, real <code>SystemExit</code>. Reached <strong>PASS 6/6, held four iterations.</strong> You abandoned the project and rebuilt from scratch 110 minutes later.</td><td><span class="tag t-ok">verified</span></td></tr>
-<tr><td>Both times a gate printed PASS in your portfolio, <strong>you overruled it.</strong></td><td><span class="tag t-info">forensics</span></td></tr>
+<tr><td><strong>NileInSpace already ran this experiment — and the gate returned a FALSE PASS.</strong> <code>tools/aaa-judge.py</code> reached <strong>PASS 6/6 and held four iterations while the visuals were unshippable.</strong> See §02b — your correction, and the most important one in here.</td><td><span class="tag t-ok">verified</span></td></tr>
 <tr><td><strong>Gates are blind where defects live.</strong> In APS: deleting <code>style.css</code> (2,165 lines), gutting <code>index.html</code>, and throwing at the top of <code>ui.js</code> all left the suite at <strong>92/92, exit 0.</strong></td><td><span class="tag t-info">forensics</span></td></tr>
 <tr><td><strong>Zero CI, zero non-sample git hooks</strong> across six repos. The treatment was never administered.</td><td><span class="tag t-ok">verified</span></td></tr>
 </tbody></table></div>
@@ -154,6 +153,34 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 <h3>And the confound that beats gates outright</h3>
 <p>Every project that stalled on <em>look</em> routes art through a <strong>binary pipeline you have to drive by hand</strong> — 16 hand-exported <code>.glb</code>; six script versions for one plate. Both projects that came out <strong>coherent</strong> have <strong>zero external assets</strong>: Crookemon2's 29 creatures are 218KB of painter <em>code</em>; CURFEW's manifest says <em>"Zero external assets."</em></p>
 <p>When art is code, the agent fixes the defect and re-renders <strong>in one turn</strong>. When art is a <code>.glb</code>, every round costs a human Blender session and the loop physically cannot close. <strong><code>FI-GRAPHICS.md</code> already mandates this.</strong> The failures violated your own doctrine, in the same zip that ships it.</p>
+
+<h2><span class="num">02b · your correction</span>It wasn't a passing gate you ignored. It was a <em>false pass</em>.</h2>
+<div class="pull">"it was a false fail, the visuals were so bad I couldn't recover it and had to start from scratch"<span class="who">Eric, 2026-08-03 — correcting the first draft of this review</span></div>
+<p>I checked <code>aaa-judge.py</code>. Its six <em>"objective, non-negotiable gates (must all PASS for <strong>ship</strong>)"</em>:</p>
+<div class="card hot">
+<div class="tw"><table>
+<thead><tr><th style="width:34px">#</th><th>Gate</th><th style="width:190px">What it actually tests</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>FPS_GATE</code> — frame time ≤16.7ms</td><td>performance</td></tr>
+<tr><td>2</td><td><code>DIAMOND_AUDIT</code> — exits 0</td><td>one specific bug</td></tr>
+<tr><td>3</td><td><code>EMPTY_PAD_READ</code> — cyan pixels in pad zones</td><td>one specific bug</td></tr>
+<tr><td>4</td><td><code>NO_FULLBLEED</code> — no bottom-band fill ≥0.90</td><td>one specific bug</td></tr>
+<tr><td>5</td><td><code>BUILDING_COVERAGE</code> — ≥N files, solid alpha</td><td>files exist</td></tr>
+<tr><td>6</td><td><code>FRAME_DUMP</code> — PNG "is not blank/black"</td><td>screenshot isn't empty</td></tr>
+</tbody></table></div>
+<p style="margin-bottom:0"><strong>Not one measures whether it looks good.</strong> Every one is <em>nothing is broken / something is present.</em> Gate 6 only checks the image isn't black. It's a <strong>floor check wearing a ship gate's label</strong> — and the mislabelling is the defect, not the checks. <strong>You didn't overrule a working gate. The gate was wrong and you were right.</strong></p>
+</div>
+
+<h3>Why it became terminal — and the second requirement</h3>
+<div class="card key">
+<p><code>js/station.js</code> is <strong>5,973 of NileInSpace's 13,443 total JS lines</strong> — 44% of the codebase in one hand-written imperative render module that also owns world sim. <span class="tag t-ok">verified</span></p>
+<p>So <em>"the visuals are bad"</em> meant <em>"rewrite six thousand lines."</em> Restarting 110 minutes later was the <strong>cheaper option</strong>, not a failure of nerve.</p>
+<p style="margin-bottom:0"><strong>Two consequences, both first-class:</strong></p>
+<ul class="tight" style="margin-bottom:0">
+<li><strong>A green must never read as "good."</strong> Grade any proposed gate by asking what it would have said about NileInSpace the day you abandoned it. If the answer is PASS, it's a floor check and must be labelled one. This is the same trap as <code>FINISHED (placeholder)</code> — which is why that was cut.</li>
+<li><strong>Recoverability sits beside termination as a design goal.</strong> Painters-not-files isn't just a faster loop — it's that <strong>bad visuals stay recoverable instead of terminal.</strong> A product that makes ugly <em>recoverable</em> beats one that makes ugly <em>detectable</em>. You could already see it was ugly.</li>
+</ul>
+</div>
 
 <h2><span class="num">03 · the save</span>The plan's headline milestone would have deleted a working safety mechanism.</h2>
 <div class="card">
@@ -188,6 +215,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color
 <div class="dec">
   <h3><span class="qid">P2</span> Painters, not files</h3>
   <p>Art is a function of <code>(role, seed, sim state)</code>, shipped as plain JS. <strong>Tier 1 stops shipping <code>assets/prompts/AI-PROMPTS.txt</code> and the empty <code>assets/sprites/</code></strong> — that folder is where art vintages breed. Tiers 2–3 keep a narrow singular-asset lane.</p>
+  <p><strong>The real payload is recoverability (§02b).</strong> NileInSpace died because "the visuals are bad" meant rewriting a 5,973-line <code>station.js</code>. Under painters, the same sentence means editing one function and reloading.</p>
   <p class="why"><strong>Named risk:</strong> FI now owns the art direction of every Arcade game, so the failure mode flips from <em>inconsistent</em> to <em>identical</em>. The structural answer is that a look pack is a parts vocabulary plus a recombination table — CURFEW gets 29 enemies from ~5 bodies and ~20 accessories — but that's an argument, not a proof.</p>
   <div class="seg" style="margin-top:14px">
     <label><input type="radio" name="p2" value="build" checked><span>build it</span></label>
