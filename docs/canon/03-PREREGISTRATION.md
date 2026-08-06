@@ -54,9 +54,38 @@ A zero means the gates sat below where the work naturally lands — the treatmen
 3. **The fiction is architectural and systematic**, which is precisely what `FI-GRAPHICS.md` says to draw in code. Zero external assets is the natural choice here, not a sacrifice.
 4. **It is the canonical failure.** A finished descendant is the strongest result this trial can produce.
 
+### This is a NEW GAME. Nothing is edited, branched, forked or copied.
+
+**Zero lines of Immortal Shores code move.** No Babylon.js, no Fastify, no npm workspaces, no TypeScript build, no `.glb`, no `station.js`. Immortal Shores is untouched and stays where it is.
+
+**Exactly three things carry, all of them retyped by hand:**
+
+| Carries | What it is |
+|---|---|
+| The **fiction** | Nile settlement, mudbrick, emmer, rations, seals, workers, harbor, great house — vocabulary, not code |
+| ~15 **numbers** | `STARTER_WORKERS = 18`, `STARTER_RATIONS = 60`, `SEAL_FLOOR = 10`, `RATION_UPKEEP_PER_WORKER_HOUR = 1` … as plain JS constants |
+| 15 **entity names** | the building kinds from `buildingCatalog.ts` |
+
+The value is not the code. It is that **someone already tuned those numbers**, so `sim-check.mjs` has real assertions to pin on day one instead of balance being invented mid-build.
+
+This does **not** violate the standing no-duplicate-game-folders rule: that rule forbids copying a game in order to iterate on it. This is a different game.
+
+### Where it lives
+
+```
+GameMaking/<new-name>/     NEW folder · git init · ITS OWN pre-commit hook
+  README.md  ACCEPT.md  LOOKBOARD.html  METRICS.tsv
+  tools/     4 scripts, 400 lines, frozen after Phase 0
+  play/      the game, ~3-4k lines, written from scratch
+```
+
+**Its own git repo, not the FI repo.** The hook is the entire experiment and hooks are per-repo; putting the game inside `FutureIndustries/` would gate every unrelated FI commit on this game's tests.
+
+At ship time `play/` copies into `FutureIndustries/games/<name>/` with a manifest and an html wrapper — the same path CURFEW took. (Verified: `GameMaking/curfew/` is not a git repo at all, and the live copy sits at `FutureIndustries/games/curfew/` + `games/curfew.html` + `games/manifests/curfew.json`.)
+
 ### The one honest conversion
 
-`rates.ts` says *"All production is per assigned Worker per real hour."* That is the MMO clock. **The descendant is per TURN.** One conversion, applied once, at Phase 0. Everything else carries.
+`rates.ts` says *"All production is per assigned Worker per real hour."* That is the MMO clock. **The descendant is per TURN.** One conversion, applied once, at Phase 0. The other numbers carry unchanged.
 
 ### THE SHAPE IS LOCKED — this is where the risk lives
 
