@@ -24,7 +24,11 @@ A zero means the gates sat below where the work naturally lands — the treatmen
 
 *Not chosen, recorded for honesty:* the alternative was to accept that verification isn't the lever and redirect to finishing. That option remains available **only after a re-run also returns zero.** Two zeros is a finding.
 
-### R3 — The theme is salvaged from a dead project. **SIGNED.** Which one: see §3.
+### R3 — The theme is salvaged from a dead project. **SIGNED. Immortal Shores confirmed by the owner 2026-08-06.**
+
+### R4 — "Shipped" means **live in the FI Arcade catalog.** Recorded by default; override before Phase 0 ends.
+
+Live-in-catalog is measurable inside the trial window and is in the owner's control. *Played-by-a-stranger* is the more honest finish line but depends on someone else showing up, which would make the 72-hour FALSIFIED clock unmeasurable. Chosen for measurability, not because it is the better definition of done.
 
 ---
 
@@ -105,8 +109,44 @@ If Phase 0 finds itself designing a world map, the salvage has failed and the sh
 
 ---
 
-## 4. Still open before the clock starts
+## 4. The economy is already tuned — this is why the salvage is worth it
 
-1. **Confirm or override the Immortal Shores pick.** The alternatives were NileInSpace's fiction or a frozen Crookémon rev.
-2. **Define "shipped"** — live in the catalog, or played by a stranger.
-3. Everything else is settled. Phase 0's two-hour cap covers: `README` one-liner · `ACCEPT.md` frozen · Look Board (≥10 min, a typed note on every row) · four scripts, 400 lines, deliberately bad · hook wired and **personally watched refusing a commit** · `METRICS.tsv` `t0`.
+Verified in `packages/shared/src/rates.ts`:
+
+| Building | Output | Rate / worker / turn | Input |
+|---|---|---|---|
+| `emmer_field` | emmer | **8** | — |
+| `ration_house` | rations | **6** | 2 emmer per output |
+| `river_clay_pit` | river_clay | **5** | — |
+| `marsh_reed_bed` | marsh_reeds | **5** | — |
+| `mudbrick_yard` | mudbricks | **2** | — |
+
+Plus `STARTER_WORKERS = 18`, `STARTER_RATIONS = 60`, `STARTER_MUDBRICKS = 40`, `RATION_UPKEEP_PER_WORKER_HOUR = 1`, `WORKER_GROWTH_PER_HOUR = 3`, `SEAL_FLOOR = 10`, `STARTER_SEALS = 10`.
+
+**The tension falls out of the numbers, not out of a design session.** 18 workers eat 18 rations a turn against a 60-ration buffer — three turns of slack. Feeding the settlement takes ~3 ration-house workers, which needs ~4.5 emmer-field workers. **About 8 of 18 workers exist only to keep the other 10 alive.** That is a real economy and none of it has to be invented.
+
+Every one of these numbers becomes a `sim-check.mjs` assertion in the same commit as the rule it pins.
+
+---
+
+## 5. Proposed premise — for owner approval at Phase 0 step 1
+
+> **Eighteen workers. Every turn they eat. Assign them across the settlement and raise the monument before the rations run out.**
+
+- **Loop (one turn):** assign workers → production resolves → every worker eats 1 ration → check win/lose
+- **Win:** the monument completes (a fixed mudbrick cost)
+- **Lose:** rations reach 0
+- **Entities:** the 15 building kinds from `buildingCatalog.ts` — already inside the 15–25 budget
+- **One screen.** The settlement is a list or a grid of plots, not an isometric world.
+
+Not approved yet. Step 1 of Phase 0 is the owner accepting, editing, or replacing this sentence.
+
+---
+
+## 6. Still open before the clock starts
+
+Nothing blocking. R1–R4 are signed and the project is confirmed.
+
+Phase 0's two-hour cap covers: `README` one-liner · `ACCEPT.md` frozen · Look Board (≥10 min, a typed note on every row) · four scripts, 400 lines, deliberately bad · hook wired and **personally watched refusing a commit** · `METRICS.tsv` `t0`.
+
+**Division of labour for Phase 0:** steps 1–2 and 4–6 can be drafted and built for the owner to approve. **Step 3, the Look Board, is the owner's and cannot be delegated** — the picks and the typed notes are the entire information content, and a delegated board is the 12.6-second rubber stamp again.
