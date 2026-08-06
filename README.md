@@ -4,6 +4,23 @@
 
 FutureIndustries approach: the harness is the product; AI fills constrained slots. Without a capable, game-type-specific harness, AI thrash is the default.
 
+---
+
+> ### ⚠ Read this before `docs/0N-*`
+>
+> **`docs/00-thesis.md` … `docs/07-success-metrics.md` describe FI's INTERNAL FACTORY — the build system that produces build packs. They are not the spine of a second product.** `docs/06-roadmap.md` M3 already says so in its own words: *"Studio interview → picks pack → exports zip with harness + playbook + skill."* That is a supply chain, not a SKU.
+>
+> Reading the `0N` series as a second product's spine is what produced a two-product detour on 2026-08-03 that did not survive its own stress test. The genre catalog, mechanics fence, extension map and agent lane model are all real content the build pack needs at depth — they just ship *inside one product*, not as a separate one.
+>
+> **Current canon, in reading order:**
+> 1. [`docs/canon/01-BUILD-PLAN.md`](docs/canon/01-BUILD-PLAN.md) — **start here.** One product, one unnamed bench, one trial.
+> 2. [`docs/canon/02-TRIAL-PROTOCOL.md`](docs/canon/02-TRIAL-PROTOCOL.md) — the weekend trial that decides everything downstream.
+> 3. [`docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md`](docs/canon/00-SYNTHESIS-AND-PRODUCT-OUTLINE.md) — the evidence, the refutation, and the four ratified pillars. **Carries two superseded claims, flagged at its head.**
+>
+> The research digests under `docs/research/` are **9-of-84 verified-primary with 43 never-canonize items.** Do not cite them as settled without a spot-check. See canon §1.
+
+---
+
 ## Thesis
 
 | Wrong order | Right order |
